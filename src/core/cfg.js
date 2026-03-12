@@ -7,8 +7,15 @@
  */
 /* eslint-disabled */
 // eslint, no import-assert: github.com/eslint/eslint/discussions/15305
-import u6cfg from "../u6-basicconfig.json" with { type: 'json' };
-import u6filetag from "../u6-filetag.json" with { type: 'json' };
+// 使用 import.meta.url 来精确定位文件位置，不受运行环境影响
+const configUrl = new URL("../u6-basicconfig.json", import.meta.url);
+const filetagUrl = new URL("../u6-filetag.json", import.meta.url);
+
+const rawConfig = await Deno.readTextFile(configUrl);
+const rawFiletag = await Deno.readTextFile(filetagUrl);
+
+const conf = JSON.parse(rawConfig);
+const filetag = JSON.parse(rawFiletag);
 // nodejs.org/docs/latest-v22.x/api/esm.html#json-modules
 
 export function timestamp() {
