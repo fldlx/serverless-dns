@@ -5,33 +5,32 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-/* eslint-disabled */
-// eslint, no import-assert: github.com/eslint/eslint/discussions/15305
-// 使用 import.meta.url 来精确定位文件位置，不受运行环境影响
+
+// 1. 精确定位文件位置
 const configUrl = new URL("../u6-basicconfig.json", import.meta.url);
 const filetagUrl = new URL("../u6-filetag.json", import.meta.url);
 
-const rawConfig = await Deno.readTextFile(configUrl);
-const rawFiletag = await Deno.readTextFile(filetagUrl);
+// 2. 使用同步读取确保变量立即初始化
+const rawConfig = Deno.readTextFileSync(configUrl);
+const rawFiletag = Deno.readTextFileSync(filetagUrl);
 
-const conf = JSON.parse(rawConfig);
-const filetag = JSON.parse(rawFiletag);
-// nodejs.org/docs/latest-v22.x/api/esm.html#json-modules
+const u6cfg = JSON.parse(rawConfig);
+const u6filetag = JSON.parse(rawFiletag);
 
 export function timestamp() {
-    return u6cfg.timestamp;
+    return u6cfg.blocklist_stamp || "0";
 }
 
 export function tdNodeCount() {
-    return u6cfg.nodecount;
+    return u6cfg.max_dns_questions || 1;
 }
 
 export function tdParts() {
-  return u6cfg.tdparts;
+  return u6cfg.tdparts || 0;
 }
 
 export function tdCodec6() {
-  return u6cfg.useCodec6;
+  return u6cfg.useCodec6 || false;
 }
 
 export function orig() {
@@ -43,9 +42,9 @@ export function filetag() {
 }
 
 export function tdmd5() {
-  return u6cfg.tdmd5;
+  return u6cfg.tdmd5 || "";
 }
 
 export function rdmd5() {
-  return u6cfg.rdmd5;
+  return u6cfg.rdmd5 || "";
 }
