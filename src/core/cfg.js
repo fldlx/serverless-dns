@@ -48,3 +48,5 @@ export function tdmd5() {
 export function rdmd5() {
   return u6cfg.rdmd5 || "";
 }
+
+console.log("Current Upstream URL:", Deno.env.get("UPSTREAM_DNS_URL"));
