@@ -1,0 +1,10 @@
+{
+  "max_sub_levels": 8,
+  "max_dns_questions": 1,
+  "max_dns_answers": 16,
+  "max_dns_authorities": 16,
+  "max_dns_additionals": 16,
+  "blocklist_rules_count": 0,
+  "blocklist_rules_url": "",
+  "blocklist_download_timeout_ms": 10000
+}
