@@ -6,7 +6,7 @@
   "max_dns_additionals": 16,
   "blocklist_rules_count": 0,
   "blocklist_rules_url": "",
-  "blocklist_download_timeout_ms": 10000,
-  "blocklist_stamp": "0",
-  "blocklist_path": ""
+  "blocklist_download_timeout_ms": 1000,
+  "blocklist_stamp": "v0",
+  "blocklist_path": "basic"
 }
